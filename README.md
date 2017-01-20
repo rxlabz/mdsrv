@@ -1,3 +1,7 @@
 # mdsrv
 
-A web server built using [Shelf](https://pub.dartlang.org/packages/shelf).
+serveur local de markdown
+
+## run
+
+dart /bin/server.dart

@@ -18,34 +18,40 @@ import 'package:shelf_static/shelf_static.dart';
 const RESPONSE_HEADERS = const {'Content-Type': "text/html; charset=utf-8"};
 
 const DEFAULT_DIR = 'web';
+const DEFAULT_PORT = '8765';
 
 void main(List<String> args) {
   var parser = new ArgParser()
-    ..addOption('port', abbr: 'p', defaultsTo: '8765');
+    ..addOption('port', abbr: 'p', defaultsTo: DEFAULT_PORT);
 
-  var result = parser.parse(args);
+  int port = initPort(parser.parse(args));
 
-  var port = int.parse(result['port'], onError: (val) {
-    stdout.writeln('Could not parse port value "$val" into a number.');
-    exit(1);
-  });
+  final staticRoot = rootPath(DEFAULT_DIR);
 
-  var rootPath = join(dirname(Platform.script.toFilePath()), '..', 'web');
-
-  var handler = const shelf.Pipeline()
-      .addMiddleware(shelf.logRequests())
-      .addHandler(new shelf.Cascade()
-          .add(createStaticHandler(rootPath, defaultDocument: 'index.html'))
-          .add(_readRequest)
-          .handler);
+  final handler = initHandler(staticRoot);
 
   io.serve(handler, '0.0.0.0', port).then((server) {
     print('MDSrvr started at http://${server.address.host}:${server.port} ...');
   });
 }
 
-rootPath(String relativePath) =>
+int initPort(ArgResults args) {
+  var port = int.parse(args['port'], onError: (val) {
+    stdout.writeln('Could not parse port value "$val" into a number.');
+    exit(1);
+  });
+  return port;
+}
+
+String rootPath(String relativePath) =>
     join(dirname(Platform.script.toFilePath()), '..', relativePath);
+
+shelf.Handler initHandler(String staticRoot)=>const shelf.Pipeline()
+  .addMiddleware(shelf.logRequests())
+  .addHandler(new shelf.Cascade()
+  .add(createStaticHandler(staticRoot, defaultDocument: 'index.html'))
+  .add(_readRequest)
+  .handler);
 
 Future<shelf.Response> _readRequest(shelf.Request request) async {
   String resp;
