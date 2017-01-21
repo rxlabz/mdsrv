@@ -1,16 +1,17 @@
 # mdsrv
 
-serveur local de markdown
+local server for markdown folder browsing
 
 ## run
 
 ```bash
 
-dart /bin/server.dart
+# simple browsing ( [0.0.0.0:8765](http://0.0.0.0:8765) )
+dart /bin/server.dart --dir /abs/path/to/content/folder 
 
-# ou alias
+# ou 
 
-rdn
-sh dev/notes/run.sh
+# development & theme customisation ( sass compilation + open browser ) 
+sh tools/run.sh
 
 ```

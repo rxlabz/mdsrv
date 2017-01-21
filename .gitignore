@@ -22,3 +22,6 @@ doc/api/
 *.ipr
 *.iws
 web/styles/
+bin/regxpr.dart
+bin/watchr.dart
+lib/emoji.dart

@@ -81,7 +81,7 @@ Future<shelf.Response> _browseRequest(shelf.Request request) async {
     resp = await html(await getDirContentUl(rootDir, requestUrl, resp), showBack: !isHome);
   } else if (extension(request.url.toFilePath()) == ".md") {
     String mdContent = await new File( rootDir + request.url.toFilePath()).readAsString();
-    resp = MoJ.parse(await html(markdownToHtml(mdContent), showBack: !isHome));
+    resp = await html(markdownToHtml(MoJ.parse(mdContent)), showBack: !isHome);
   } else
     resp = '"${request.url}" is not a directory';
 

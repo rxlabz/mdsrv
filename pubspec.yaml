@@ -13,6 +13,8 @@ dependencies:
   shelf_static: '0.2.4'
   markdown:
   html_unescape:
+  moj :
+    git: git://github.com/rxlabz/m-o-j.git
   mustache:
     git:
       url: git://github.com/srawlins/mustache.git
