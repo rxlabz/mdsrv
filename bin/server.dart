@@ -6,7 +6,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:args/args.dart';
-import 'package:html_unescape/html_unescape.dart';
 import 'package:markdown/markdown.dart';
 import 'package:mdsrv/emoji.dart';
 import 'package:mdsrv/file-utils.dart';
@@ -25,13 +24,12 @@ const DEFAULT_PORT = '8765';
 const DEFAULT_INDEX = 'index.html';
 
 
-//String projectPath = '/users/rxlabz/dev/notes';
 String rootDir;
 
 void main(List<String> args) {
   var parser = new ArgParser()
     ..addOption('port', abbr: 'p', defaultsTo: DEFAULT_PORT)
-    ..addOption('dir', abbr: 'd'/*, defaultsTo: projectPath*/);
+    ..addOption('dir', abbr: 'd', );
 
   ArgResults params = parser.parse(args);
   int port = initPort(params);
@@ -93,5 +91,5 @@ Future<shelf.Response> _browseRequest(shelf.Request request) async {
 Future<String> html(String body, {bool showBack = false}) async {
   String src = await new File('./web/index.tpl.html').readAsString();
   Template tpl = new Template(src, name: 'file.html');
-  return tpl.renderString({"body": body, "showBack": showBack}).replaceAll(':fire:', "🔥");
+  return tpl.renderString({"body": body, "showBack": showBack});
 }

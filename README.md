@@ -1,6 +1,6 @@
 # mdsrv
 
-local server for markdown folder browsing
+local server for browsing markdown folders 
 
 ## run
 
@@ -11,7 +11,7 @@ dart /bin/server.dart --dir /abs/path/to/content/folder
 
 # ou 
 
-# development & theme customisation ( sass compilation + open browser ) 
+# development & theme customisation ( sass compilation & open browser ) 
 sh tools/run.sh
 
 ```
