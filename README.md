@@ -6,7 +6,7 @@ local server for markdown folder browsing
 
 ```bash
 
-# simple browsing ( [0.0.0.0:8765](http://0.0.0.0:8765) )
+# open folder => http://0.0.0.0:8765
 dart /bin/server.dart --dir /abs/path/to/content/folder 
 
 # ou 
