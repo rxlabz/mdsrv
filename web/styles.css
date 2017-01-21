@@ -1,62 +1,89 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 html, body {
   font-family: "Helvetica Neue", Geneva, Arial, sans-serif;
-  background-color: #fcfcfc;
-  line-height: 1.5; }
+  background-color: #fbfdfe;
+  line-height: 1.5;
+}
 
 a {
-  color: #17aecc; }
+  color: #17aecc;
+}
 
 a:visited {
-  color: #367d94; }
+  color: #367d94;
+}
 
 header {
-  background-color: #eee;
+  background-color: #eaf1f2;
   padding: 8px;
-  margin-bottom: 24px; }
-  header h1 {
-    font-size: 2.4rem; }
+}
+header h1 {
+  font-size: 2.4rem;
+  color: #666a6c;
+  font-weight: normal;
+}
 
 #container {
   margin: 12px auto;
-  padding: 18px;
   width: 100%;
-  font-size: 1.2rem; }
-  #container h1 {
-    font-size: 1.8rem;
-    padding: 8px 0;
-    margin-top: 12px; }
-  #container h2 {
-    font-size: 1.4rem;
-    padding: 8px 0;
-    margin-top: 12px; }
-  #container h3 {
-    font-size: 1.2  rem;
-    padding: 8px 0;
-    margin-top: 12px; }
-  #container ul {
-    padding-left: 28px; }
-  #container li {
-    margin: 8px 0; }
-    #container li .dir a::before {
-      content: " -> "; }
-  #container pre {
-    font-size: 1rem;
-    margin: 12px 0;
-    padding: 8px;
-    background-color: #f6f6f6; }
-    #container pre code {
-      padding: 12px;
-      background-color: #404648;
-      /*background-color: #fafafa;*/ }
+  font-size: 1.2rem;
+}
+#container h1, #container h2, #container h3, #container h4, #container h5 {
+  padding: 8px 12px;
+}
+#container h1 {
+  font-size: 1.8rem;
+  /*margin: 8px -20px 0 -20px;*/
+  background-color: #f0f4f6;
+  color: #808486;
+  font-weight: normal;
+}
+#container h2 {
+  font-size: 1.4rem;
+  margin-top: 12px;
+}
+#container h3 {
+  font-size: 1.2rem;
+  margin-top: 12px;
+}
+#container p {
+  padding: 8px 16px;
+}
+#container ul {
+  padding-left: 36px;
+}
+#container li {
+  margin: 8px 0;
+}
+#container li .dir a::before {
+  content: " -> ";
+}
+#container pre {
+  font-size: 1rem;
+  margin: 12px 0;
+  padding: 8px;
+  background-color: #f6f6f6;
+}
+#container pre code {
+  padding: 12px;
+  background-color: #404648;
+  /*background-color: #fafafa;*/
+}
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 880px) {
   #container {
-    width: 720px;
-    font-size: 0.95rem; } }
-
-/*# sourceMappingURL=styles.css.map */
+    width: 840px;
+    font-size: 0.95rem;
+    /*h2,h3,h4,h5{
+      padding: 6px;
+    }*/
+  }
+  #container p {
+    padding: 8px 16px;
+  }
+}

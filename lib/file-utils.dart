@@ -7,8 +7,9 @@ import 'package:shelf/shelf.dart' as shelf;
 
 /// renvoie une liste html des elements d'un dossier
 ///
-Future<String> getDirContentUl(shelf.Request request, String resp) async {
-  final root = new Directory(request.url.toFilePath());
+Future<String> getDirContentUl(String rootDir, String requestUrl /*shelf.Request request*/, String resp, ) async {
+  //final root = new Directory(request.url.toFilePath());
+  final root = new Directory(rootDir+requestUrl);
   final items = await root
       .list()
       .where((f) =>
@@ -18,7 +19,7 @@ Future<String> getDirContentUl(shelf.Request request, String resp) async {
 
   final getClass = (FileSystemEntity f) => isDirSync(f.path) ? 'dir' : 'file';
   final getLink =
-      (FileSystemEntity f) => "<a href='./${f.path}'>${basename(f.path)}</a>";
+      (FileSystemEntity f) => "<a href='${requestUrl + '/' + basename(f.path)}'>${basename(f.path)}</a>";
   final f2l =
       (FileSystemEntity f) => "<li class='${getClass(f)}'>${getLink(f)}</li>";
 

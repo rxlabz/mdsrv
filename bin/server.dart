@@ -8,6 +8,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:markdown/markdown.dart';
+import 'package:mdsrv/emoji.dart';
 import 'package:mdsrv/file-utils.dart';
 import 'package:mustache/mustache.dart';
 import 'package:path/path.dart';
@@ -23,11 +24,19 @@ const DEFAULT_DIR = 'web';
 const DEFAULT_PORT = '8765';
 const DEFAULT_INDEX = 'index.html';
 
+
+//String projectPath = '/users/rxlabz/dev/notes';
+String rootDir;
+
 void main(List<String> args) {
   var parser = new ArgParser()
-    ..addOption('port', abbr: 'p', defaultsTo: DEFAULT_PORT);
+    ..addOption('port', abbr: 'p', defaultsTo: DEFAULT_PORT)
+    ..addOption('dir', abbr: 'd'/*, defaultsTo: projectPath*/);
 
-  int port = initPort(parser.parse(args));
+  ArgResults params = parser.parse(args);
+  int port = initPort(params);
+
+  rootDir = params['dir'];
 
   final staticRoot = rootPath(DEFAULT_DIR);
 
@@ -63,14 +72,16 @@ shelf.Handler initHandler(String staticRoot) => const shelf.Pipeline()
 Future<shelf.Response> _browseRequest(shelf.Request request) async {
   String resp;
 
-  final bool isHome = request.url.toFilePath() == DEV_NOTES;
+  //final bool isHome = request.url.toFilePath() == DEV_NOTES;
+  final bool isHome = request.url.toFilePath() == '';
 
-  if (await FileSystemEntity.isDirectory(request.url.toFilePath())) {
-    resp = await html(await getDirContentUl(request, resp), showBack: !isHome);
+  if (await FileSystemEntity.isDirectory( rootDir + request.url.toFilePath())) {
+    //final path = rootDir + request.url.toFilePath();
+    final requestUrl = request.url.toFilePath();
+    resp = await html(await getDirContentUl(rootDir, requestUrl, resp), showBack: !isHome);
   } else if (extension(request.url.toFilePath()) == ".md") {
-    String mdContent = await new File(request.url.toFilePath()).readAsString();
-    final cnv = new HtmlUnescape();
-    resp = await html(markdownToHtml(mdContent), showBack: !isHome);
+    String mdContent = await new File( rootDir + request.url.toFilePath()).readAsString();
+    resp = MoJ.parse(await html(markdownToHtml(mdContent), showBack: !isHome));
   } else
     resp = '"${request.url}" is not a directory';
 
@@ -82,5 +93,5 @@ Future<shelf.Response> _browseRequest(shelf.Request request) async {
 Future<String> html(String body, {bool showBack = false}) async {
   String src = await new File('./web/index.tpl.html').readAsString();
   Template tpl = new Template(src, name: 'file.html');
-  return tpl.renderString({"body": body, "showBack": showBack});
+  return tpl.renderString({"body": body, "showBack": showBack}).replaceAll(':fire:', "🔥");
 }
