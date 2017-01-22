@@ -13,8 +13,6 @@ class MdApp extends ShelfApp{
 
   MDBrowser mdBrowser;
 
-  Handler get handler => getHandler();
-
   MdApp(String rootDir, String dir, String index) : super(dir, index){
     mdBrowser = new MDBrowser(rootDir);
   }

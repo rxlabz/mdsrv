@@ -12,6 +12,7 @@ dependencies:
   shelf: '>=0.6.0 <0.7.0'
   shelf_static: '0.2.4'
   markdown:
+  meta:
   html_unescape:
   moj :
     git: git://github.com/rxlabz/m-o-j.git

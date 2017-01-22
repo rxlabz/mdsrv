@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:args/args.dart';
 import 'package:path/path.dart';
+import 'package:meta/meta.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_static/shelf_static.dart';
 
@@ -16,17 +17,21 @@ abstract class ShelfApp {
   String _dir;
   String _index;
 
-  ShelfApp(this._dir, this._index);
+  Handler get handler => _getHandler();
 
   get staticHandler =>
     createStaticHandler(rootPath(_dir), defaultDocument: _index);
 
-  Handler getHandler() {
+  ShelfApp(this._dir, this._index);
+
+
+  Handler _getHandler() {
     return const Pipeline()
       .addMiddleware(logRequests())
       .addHandler(getCascadeHandler());
   }
 
+  @protected
   Handler getCascadeHandler() => staticHandler;
 
 }
