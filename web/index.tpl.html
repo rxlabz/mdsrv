@@ -7,7 +7,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="stylesheet" href="atom-one-dark.css">
     <!--<link rel="stylesheet" href="styles/atom-one-light.css">-->
+
     <link rel="stylesheet" href="styles.css">
+    <!--<link rel="stylesheet" href="index.css">-->
     <title>MDSRV</title>
 </head>
 <body>
@@ -17,10 +19,15 @@
     {{#showBack}}
     <a href="#" onclick="window.history.back()">< Back</a>
     {{/showBack}}
+
 </header>
 
 <div id="container">
+    {{^showBack}}
+    <div>
+    {{/showBack}}
     {{{body}}}
+    </div>
 </div>
 </body>
 <script src="highlight.pack.js"></script>

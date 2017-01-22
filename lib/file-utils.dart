@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:path/path.dart';
 
-import 'package:shelf/shelf.dart' as shelf;
+import 'package:path/path.dart';
 
 /// renvoie une liste html des elements d'un dossier
 ///
