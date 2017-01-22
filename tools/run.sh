@@ -5,12 +5,18 @@
 
 if lsof -t -i tcp:8765
 then
-    echo 'occupé'
-else
-    echo 'libre'
+    echo 'port 8765 is not available. Kill process ?'
+    select result in "yes" "no"; do
+        if [ "$result" = "yes" ]
+        then
+            lsof -t -i tcp:8765 | xargs kill &
+            break
+        else
+            echo 'Cancelled...'
+        fi
+        exit
+    done
 fi
-
-lsof -t -i tcp:8765 | xargs kill &
 
 # tools dir path
 MDSRV_TOOLS="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
