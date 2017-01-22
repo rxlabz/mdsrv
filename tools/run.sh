@@ -30,7 +30,7 @@ MDSRV="$( cd "$( dirname "${MDSRV_TOOLS}" )" && pwd )"
 dart-sass $MDSRV/web/styles.scss >> $MDSRV/web/styles.css &
 
 # launch md-server
-/bin/sleep 1 && dart "$1" -d "$2" &
+/bin/sleep 1 && dart $MDSRV/bin/mdsrv.dart -d "$1" &
 
 # open in browser
 /bin/sleep 2 && /usr/bin/open -a "/Applications/Google Chrome.app" "http://0.0.0.0:8765"

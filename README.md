@@ -12,6 +12,6 @@ dart /bin/server.dart --dir /abs/path/to/content/folder
 # ou 
 
 # development & theme customisation ( sass compilation & open browser ) 
-sh tools/run.sh /path/rxlabz/dev/projects/darxlibz/mdsrv/bin/server.dart /Users/rxlabz/dev/notes/
+sh tools/run.sh /Users/rxlabz/dev/notes/
 
 ```
