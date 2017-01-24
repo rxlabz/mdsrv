@@ -2,12 +2,12 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:markdown/markdown.dart';
-import 'package:mdsrv/emoji.dart';
 import 'package:mdsrv/file-utils.dart';
 import 'package:mdsrv/shelf-utils.dart';
 import 'package:mustache/mustache.dart';
 import 'package:path/path.dart';
 import 'package:shelf/shelf.dart';
+import 'package:moj/moj.dart';
 
 class MdApp extends ShelfApp{
 
