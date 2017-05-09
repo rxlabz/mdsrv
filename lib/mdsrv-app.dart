@@ -50,7 +50,7 @@ class MDBrowser {
         showBack: !isHome);
     } else if (extension(req.url.toFilePath()) == ".md") {
       String mdContent =
-      await new File(rootDir + req.url.toFilePath()).readAsString();
+      await new File(rootDir + '/' + req.url.toFilePath()).readAsString();
       resp =
       await html(markdownToHtml(MoJ.parse(mdContent)), showBack: !isHome);
     } else
