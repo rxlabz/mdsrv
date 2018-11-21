@@ -1,22 +1,19 @@
 name: 'mdsrv'
-version: 0.0.1
+version: 0.0.2
 description: A web server built using the shelf package.
 #author: rxlabz <email@example.com>
 #homepage: https://www.example.com
 
 environment:
-  sdk: '>=1.0.0 <2.0.0'
+  sdk: '>1.0.0 <3.0.0'
 
 dependencies:
-  args: '>=0.10.0 <0.14.0'
-  shelf: '>=0.6.0 <0.7.0'
-  shelf_static: '0.2.4'
+  args:
+  shelf:
+  shelf_static:
   markdown:
   meta:
   html_unescape:
   moj :
     git: git://github.com/rxlabz/m-o-j.git
   mustache:
-    git:
-      url: git://github.com/srawlins/mustache.git
-      ref: fix-strong-errors

@@ -7,7 +7,7 @@ local server for browsing markdown folders
 ```bash
 
 # open folder => http://0.0.0.0:8765
-dart /bin/mdsrv.dart --dir /abs/path/to/content/folder 
+dart ./bin/mdsrv.dart --dir /abs/path/to/content/folder 
 
 # ou 
 

@@ -27,7 +27,7 @@ MDSRV="$( cd "$( dirname "${MDSRV_TOOLS}" )" && pwd )"
 > $MDSRV/web/styles.css &
 
 # compilation Sass vers styles.css
-dart-sass $MDSRV/web/styles.scss >> $MDSRV/web/styles.css &
+sass $MDSRV/web/styles.scss >> $MDSRV/web/styles.css &
 
 # launch md-server
 /bin/sleep 1 && dart $MDSRV/bin/mdsrv.dart -d "$1" &

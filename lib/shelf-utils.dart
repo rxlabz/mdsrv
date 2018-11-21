@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:io';
+
 import 'package:args/args.dart';
-import 'package:path/path.dart';
 import 'package:meta/meta.dart';
+import 'package:path/path.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_static/shelf_static.dart';
 
@@ -13,17 +15,15 @@ const HEADERS_CONTENT_HTML = const {'Content-Type': "text/html; charset=utf-8"};
 /// - with static handler
 ///
 abstract class ShelfApp {
-
   String _dir;
   String _index;
 
   Handler get handler => _getHandler();
 
-  get staticHandler =>
+  FutureOr<Response> Function(Request r) get staticHandler =>
     createStaticHandler(rootPath(_dir), defaultDocument: _index);
 
   ShelfApp(this._dir, this._index);
-
 
   Handler _getHandler() {
     return const Pipeline()
@@ -33,7 +33,6 @@ abstract class ShelfApp {
 
   @protected
   Handler getCascadeHandler() => staticHandler;
-
 }
 
 int initPort(ArgResults args) {
